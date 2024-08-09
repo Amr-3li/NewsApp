@@ -1,7 +1,7 @@
 import 'package:newsapp/Apis/models/news_model.dart';
 import 'package:newsapp/Apis/wepServices/news_wep_ser.dart';
 
-  class NewsRepository {
+class NewsRepository {
   final NewsWepService wepService;
 
   NewsRepository(this.wepService);
@@ -23,6 +23,7 @@ import 'package:newsapp/Apis/wepServices/news_wep_ser.dart';
 
     return news;
   }
+
   Future<List<News>> getSearchNews(String s) async {
     List<News> news = [];
     List<dynamic> newsCome = await wepService.searchNews(s);

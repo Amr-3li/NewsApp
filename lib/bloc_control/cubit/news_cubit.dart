@@ -4,21 +4,22 @@ import 'package:bloc/bloc.dart';
 import 'package:meta/meta.dart';
 
 import 'package:newsapp/Apis/models/news_model.dart';
+import 'package:newsapp/Apis/repository/news_reposeitory.dart';
 
 part 'news_state.dart';
 
 class NewsCubit extends Cubit<NewsState> {
-  final newsRepository;
+  NewsRepository newsRepository;
 
   NewsCubit(
     this.newsRepository,
   ) : super(NewsInitial());
 
-  List<News> getNews() {
+  Future<List<News>> getNews() async {
     emit(NewsLoading());
     try {
       List<News> news = [];
-      newsRepository.getNews().then((value) {
+     await newsRepository.getNews().then((value) {
         news = value;
       });
       emit(NewsLoaded(news));
@@ -29,11 +30,11 @@ class NewsCubit extends Cubit<NewsState> {
     }
   }
 
-  List<News> getSearchNews(String s) {
+  Future<List<News>> getSearchNews(String s) async {
     emit(SearchNewsLoading());
     try {
       List<News> news = [];
-      newsRepository.getSearchNews(s).then((value) {
+     await newsRepository.getSearchNews(s).then((value) {
         news = value;
       });
       emit(SearchNewsLoaded(news));

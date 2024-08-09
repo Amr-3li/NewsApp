@@ -36,23 +36,22 @@ class NewsWidget extends StatelessWidget {
                   borderRadius: BorderRadius.circular(29),
                   child: news.urlToImage != null
                       ? CachedNetworkImage(
+                          filterQuality: FilterQuality.low,
                           height: 190,
                           width: double.infinity,
                           imageUrl: news.urlToImage!,
                           imageBuilder: (context, imageProvider) => Container(
                             decoration: BoxDecoration(
                               image: DecorationImage(
-                                  image: imageProvider,
-                                  fit: BoxFit.cover,
-                                  // colorFilter: ColorFilter.mode(
-                                  //     Colors.red, BlendMode.colorBurn),
+                                image: imageProvider,
+                                fit: BoxFit.cover,
+                                // colorFilter: ColorFilter.mode(
+                                //     Colors.red, BlendMode.colorBurn),
                               ),
                             ),
                           ),
                           placeholder: (context, url) =>
-                              const CircularProgressIndicator(
-
-                              ),
+                              const CircularProgressIndicator(),
                           errorWidget: (context, url, error) =>
                               const Icon(Icons.error),
                         )
@@ -70,41 +69,6 @@ class NewsWidget extends StatelessWidget {
                             );
                           },
                         ),
-                  // ? Image.network(
-                  //     news.urlToImage!,
-                  //     fit: BoxFit.cover,
-                  //     height: 190,
-                  //     width: double.infinity,
-                  //     filterQuality: FilterQuality.low,
-                  //     errorBuilder: (context, error, stackTrace) {
-                  //       return Image.asset(
-                  //         "assets/images/loading.gif",
-                  //         fit: BoxFit.cover,
-                  //         height: 190,
-                  //         width: double.infinity,
-                  //
-                  //       );
-                  //       // Container(
-                  //       //   height: 190,
-                  //       //     width: double.infinity,
-                  //       //   color: Colors.grey,
-                  //       // );
-                  //     },
-                  //   )
-                  // : Image.asset(
-                  //     "assets/images/loading.gif",
-                  //     fit: BoxFit.cover,
-                  //     height: 190,
-                  //     width: double.infinity,
-                  //     errorBuilder: (context, error, stackTrace) {
-                  //       return Image.asset(
-                  //         "assets/images/loading.gif",
-                  //         fit: BoxFit.cover,
-                  //         height: 190,
-                  //         width: double.infinity,
-                  //       );
-                  //     },
-                  //   ),
                 ),
                 const SizedBox(height: 5),
                 Text(

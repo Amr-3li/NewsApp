@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:newsapp/Apis/repository/news_reposeitory.dart';
 import 'package:newsapp/Apis/wepServices/news_wep_ser.dart';
+import 'package:newsapp/bloc_control/cubit/news_cubit.dart';
 import 'package:newsapp/views/screens/home_page.dart';
 
 void main() {
@@ -20,7 +22,10 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
-      home: const HomePage(),
+      home: BlocProvider(
+        create: (context) => NewsCubit(NewsRepository(NewsWepService())),
+        child: const HomePage(),
+      ),
     );
   }
 }
