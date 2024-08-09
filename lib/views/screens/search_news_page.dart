@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:newsapp/Apis/repository/news_reposeitory.dart';
 import 'package:newsapp/Apis/wepServices/news_wep_ser.dart';
@@ -19,7 +18,6 @@ class _SearchPageState extends State<SearchPage> {
   List<News> ?allNews;
 @override
   void initState()  {
-    // TODO: implement initState
     super.initState();
     getNews();
   }
@@ -37,7 +35,7 @@ class _SearchPageState extends State<SearchPage> {
       ),
       body: Padding(
         padding: const EdgeInsets.all(12),
-        child: Container(
+        child: SizedBox(
           width: double.infinity,
           height: double.infinity,
           child: SingleChildScrollView(
@@ -46,7 +44,7 @@ class _SearchPageState extends State<SearchPage> {
 
                 const SizedBox(height: 10),
                 isLoading
-                    ? Center(child: CircularProgressIndicator())
+                    ? const Center(child: CircularProgressIndicator())
                     : allNews != null && allNews!.isNotEmpty
                     ? ListView.builder(
                   scrollDirection: Axis.vertical,
@@ -57,7 +55,7 @@ class _SearchPageState extends State<SearchPage> {
                     if (allNews![index].title != "[Removed]") {
                       return NewsWidget(news: allNews![index]);
                     } else {
-                      return SizedBox(
+                      return const SizedBox(
                         width: 1,
                       );
                     }
